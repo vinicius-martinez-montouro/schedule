@@ -8,4 +8,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * Class repository of User
  */
 public interface UserRepository extends MongoRepository<User, String> {
+
+    /**
+     * Search by cpf
+     * @param cpf
+     * @return
+     */
+    User findByCpf(String cpf);
 }

@@ -1,6 +1,7 @@
 package com.ifsp.prss6.schedule.model.request;
 
-import com.ifsp.prss6.schedule.model.entity.Doctor;
+import com.ifsp.prss6.schedule.model.entity.User;
+import com.ifsp.prss6.schedule.model.response.DoctorResponse;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -46,7 +47,7 @@ public class DoctorRequest {
     )
     private String email;
 
-    public static DoctorRequest fromDoctor(Doctor doctor){
+    public static DoctorRequest fromDoctor(User doctor){
         return DoctorRequest.builder()
                 .id(doctor.get_id())
                 .cpf(doctor.getCpf())
@@ -56,6 +57,19 @@ public class DoctorRequest {
                 .email(doctor.getEmail())
                 .additionalInformation(doctor.getAdditionalInformation())
                 .performanceArea(doctor.getPerformanceArea())
+                .build();
+    }
+
+    public static DoctorRequest fromDoctorResponse(DoctorResponse doctorResponse){
+        return DoctorRequest.builder()
+                .id(doctorResponse.getId())
+                .cpf(doctorResponse.getCpf())
+                .email(doctorResponse.getEmail())
+                .name(doctorResponse.getName())
+                .birthDate(doctorResponse.getBirthDate())
+                .email(doctorResponse.getEmail())
+                .additionalInformation(doctorResponse.getAdditionalInformation())
+                .performanceArea(doctorResponse.getPerformanceArea())
                 .build();
     }
 

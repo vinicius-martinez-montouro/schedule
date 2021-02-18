@@ -1,9 +1,12 @@
 package com.ifsp.prss6.schedule.controller;
 
+import com.ifsp.prss6.schedule.model.request.ClientRequest;
+import com.ifsp.prss6.schedule.model.request.DoctorRequest;
 import com.ifsp.prss6.schedule.model.request.UserRequest;
 import com.ifsp.prss6.schedule.model.response.UserResponse;
 import com.ifsp.prss6.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +25,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> findPageable(Pageable pageable){
+    public ResponseEntity<Page<UserResponse>> findPageable(@ParameterObject Pageable pageable){
         return ResponseEntity.ok(userService.findAllPageable(pageable));
     }
 
@@ -39,6 +42,18 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Void> save(@Valid @RequestBody UserRequest userRequest){
         userService.save(userRequest);
+        return ResponseEntity.status(CREATED).build();
+    }
+
+    @PostMapping(path = "/client")
+    public ResponseEntity<Void> saveClient(@Valid @RequestBody ClientRequest clientRequest){
+        userService.saveClient(clientRequest);
+        return ResponseEntity.status(CREATED).build();
+    }
+
+    @PostMapping(path = "/doctor")
+    public ResponseEntity<Void> saveDoctor(@Valid @RequestBody DoctorRequest doctorRequest){
+        userService.saveDoctor(doctorRequest);
         return ResponseEntity.status(CREATED).build();
     }
 

@@ -1,6 +1,6 @@
 package com.ifsp.prss6.schedule.model.response;
 
-import com.ifsp.prss6.schedule.model.entity.Doctor;
+import com.ifsp.prss6.schedule.model.entity.User;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -33,7 +33,7 @@ public class DoctorResponse {
 
     private String email;
 
-    public static DoctorResponse fromDoctor(Doctor doctor){
+    public static DoctorResponse fromDoctor(User doctor){
         return DoctorResponse.builder()
                 .id(doctor.get_id())
                 .cpf(doctor.getCpf())

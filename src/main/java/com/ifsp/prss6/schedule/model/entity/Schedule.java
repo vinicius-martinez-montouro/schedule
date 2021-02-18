@@ -8,10 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-import static com.ifsp.prss6.schedule.model.entity.Client.fromClientRequest;
-import static com.ifsp.prss6.schedule.model.entity.Client.fromClientResponse;
-import static com.ifsp.prss6.schedule.model.entity.Doctor.fromDoctorRequest;
-import static com.ifsp.prss6.schedule.model.entity.Doctor.fromDoctorResponse;
+import static com.ifsp.prss6.schedule.model.entity.User.fromUserRequest;
+import static com.ifsp.prss6.schedule.model.entity.User.fromUserResponse;
 
 /**
  * @author vinicius.montouro
@@ -28,17 +26,17 @@ public class Schedule {
     @Id
     private String _id;
 
-    private Client client;
+    private User client;
 
-    private Doctor doctor;
+    private User doctor;
 
     private LocalDateTime schedule;
 
     public static Schedule fromScheduleRequest(ScheduleRequest scheduleRequest){
         return Schedule.builder()
                 ._id(scheduleRequest.getId())
-                .client(fromClientRequest(scheduleRequest.getClient()))
-                .doctor(fromDoctorRequest(scheduleRequest.getDoctor()))
+                .client(fromUserRequest(scheduleRequest.getClient()))
+                .doctor(fromUserRequest(scheduleRequest.getDoctor()))
                 .schedule(scheduleRequest.getSchedule())
                 .build();
     }
@@ -46,8 +44,8 @@ public class Schedule {
     public static Schedule fromScheduleResponse(ScheduleResponse scheduleResponse){
         return Schedule.builder()
                 ._id(scheduleResponse.getId())
-                .client(fromClientResponse(scheduleResponse.getClient()))
-                .doctor(fromDoctorResponse(scheduleResponse.getDoctor()))
+                .client(fromUserResponse(scheduleResponse.getClient()))
+                .doctor(fromUserResponse(scheduleResponse.getDoctor()))
                 .schedule(scheduleResponse.getSchedule())
                 .build();
     }

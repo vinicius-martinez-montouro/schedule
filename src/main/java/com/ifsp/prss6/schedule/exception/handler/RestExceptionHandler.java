@@ -58,5 +58,4 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                         .developerMessage(exception.getClass().getName())
                         .build(), HttpStatus.PRECONDITION_FAILED);
     }
-
 }

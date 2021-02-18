@@ -13,16 +13,17 @@ import java.util.List;
 public interface ScheduleRepository extends MongoRepository<Schedule,String> {
 
     /**
-     * Search Schedule by User Id
-     * @param userId
-     * @return Schedule
-     */
-    List<Schedule> findByUserId(String userId);
-
-    /**
-     * Search Schedule by User
+     * Search Schedule by client
      * @param user
      * @return Schedule
      */
-    List<Schedule> findByUser(User user);
+    List<Schedule> findByClient(User client);
+
+    /**
+     * Search Schedule by doctor
+     * @param user
+     * @return Schedule
+     */
+    List<Schedule> findByDoctor(User doctor);
+
 }

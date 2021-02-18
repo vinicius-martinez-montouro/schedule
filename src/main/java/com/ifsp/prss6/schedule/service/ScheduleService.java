@@ -1,5 +1,7 @@
 package com.ifsp.prss6.schedule.service;
 
+import com.ifsp.prss6.schedule.model.request.ClientRequest;
+import com.ifsp.prss6.schedule.model.request.DoctorRequest;
 import com.ifsp.prss6.schedule.model.request.ScheduleRequest;
 import com.ifsp.prss6.schedule.model.request.UserRequest;
 import com.ifsp.prss6.schedule.model.response.ScheduleResponse;
@@ -33,17 +35,18 @@ public interface ScheduleService {
     ScheduleResponse findById(String id);
 
     /**
-     * Search all Schedule of user
-     * @param userRequest
+     * Search all Schedule of client
+     * @param clientRequest
      * @return List of ScheduleResponse
      */
-    List<ScheduleResponse> findByUser(UserRequest userRequest);
+    List<ScheduleResponse> findByClient(ClientRequest clientRequest);
+
     /**
-     * Search all Schedule of user id
-     * @param userRequest
+     * Search all Schedule of doctor
+     * @param doctorRequest
      * @return List of ScheduleResponse
      */
-    List<ScheduleResponse> findByUserId(String userId);
+    List<ScheduleResponse> findByDoctor(DoctorRequest doctorRequest);
 
     /**
      * Save new Schedule

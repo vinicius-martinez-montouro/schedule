@@ -1,5 +1,7 @@
 package com.ifsp.prss6.schedule.controller;
 
+import com.ifsp.prss6.schedule.model.request.ClientRequest;
+import com.ifsp.prss6.schedule.model.request.DoctorRequest;
 import com.ifsp.prss6.schedule.model.request.ScheduleRequest;
 import com.ifsp.prss6.schedule.model.request.UserRequest;
 import com.ifsp.prss6.schedule.model.response.ScheduleResponse;
@@ -27,14 +29,14 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.findAllPageable(pageable));
     }
 
-    @GetMapping(path = "/user")
-    public ResponseEntity<List<ScheduleResponse>> findByUser(@Valid @RequestBody UserRequest userRequest){
-        return ResponseEntity.ok(scheduleService.findByUser(userRequest));
+    @GetMapping(path = "/client")
+    public ResponseEntity<List<ScheduleResponse>> findByClient(@Valid @RequestBody ClientRequest clientRequest){
+        return ResponseEntity.ok(scheduleService.findByClient(clientRequest));
     }
 
-    @GetMapping(path = "/user/{id}")
-    public ResponseEntity<List<ScheduleResponse>> findByUser(@PathVariable String userId){
-        return ResponseEntity.ok(scheduleService.findByUserId(userId));
+    @GetMapping(path = "/doctor")
+    public ResponseEntity<List<ScheduleResponse>> findByDoctor(@Valid @RequestBody DoctorRequest doctorRequest){
+        return ResponseEntity.ok(scheduleService.findByDoctor(doctorRequest));
     }
 
     @GetMapping(path = "/all")

@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
@@ -27,7 +28,7 @@ public class UserRequest {
     @NotBlank(message = "Name can't be white")
     private String name;
 
-    @NotBlank(message = "Birth date can't be white")
+    @NotNull(message = "Birth date can't be white")
     private LocalDate birthDate;
 
     @NotBlank(message = "Tel can't be white")

@@ -3,7 +3,11 @@ package com.ifsp.prss6.schedule.service.impl;
 import com.ifsp.prss6.schedule.exception.BadRequestException;
 import com.ifsp.prss6.schedule.exception.PreconditionException;
 import com.ifsp.prss6.schedule.model.entity.User;
+import com.ifsp.prss6.schedule.model.request.ClientRequest;
+import com.ifsp.prss6.schedule.model.request.DoctorRequest;
 import com.ifsp.prss6.schedule.model.request.UserRequest;
+import com.ifsp.prss6.schedule.model.response.ClientResponse;
+import com.ifsp.prss6.schedule.model.response.DoctorResponse;
 import com.ifsp.prss6.schedule.model.response.UserResponse;
 import com.ifsp.prss6.schedule.repository.UserRepository;
 import com.ifsp.prss6.schedule.service.UserService;
@@ -42,9 +46,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ClientResponse findClientById(String id) {
+        return userRepository.findById(id).map(ClientResponse::fromClient)
+                .orElseThrow(() -> new BadRequestException("Client not found"));
+    }
+
+    @Override
+    public DoctorResponse findDoctorById(String id) {
+        return userRepository.findById(id).map(DoctorResponse::fromDoctor)
+                .orElseThrow(() -> new BadRequestException("Client not found"));
+    }
+
+    @Override
     public void save(UserRequest userRequest) {
+        if(userRepository.findByCpf(userRequest.getCpf()) != null)
+            throw new PreconditionException("User ready registred");
         userRequest.setId(null);
         userRepository.save(fromUserRequest(userRequest));
+    }
+
+    @Override
+    public void saveClient(ClientRequest clientRequest) {
+        if(userRepository.findByCpf(clientRequest.getCpf()) != null)
+            throw new PreconditionException("Client ready registred");
+        clientRequest.setId(null);
+        userRepository.save(fromUserRequest(clientRequest));
+    }
+
+    @Override
+    public void saveDoctor(DoctorRequest doctorRequest) {
+        if(userRepository.findByCpf(doctorRequest.getCpf()) != null)
+            throw new PreconditionException("Doctor ready registred");
+        doctorRequest.setId(null);
+        userRepository.save(fromUserRequest(doctorRequest));
     }
 
     @Override
